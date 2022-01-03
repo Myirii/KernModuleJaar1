@@ -111,13 +111,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void DecreaseShield()
     {
-        shieldStrength = Mathf.Min(Mathf.Max(shieldStrength - 1, 0), 200);
+        shieldStrength = Mathf.Min(Mathf.Max(shieldStrength - 4, 0), 200);
         shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
     }
 
     private void IncreaseShield()
     {
-        shieldStrength = Mathf.Min(Mathf.Max(shieldStrength + 1, 0), 200);
+        shieldStrength = Mathf.Min(Mathf.Max(shieldStrength + 4, 0), 200);
         shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
     }
 
