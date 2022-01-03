@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool dashing = false;
 
+    private bool decreasingShield = false;
+    private bool increasingShield = false;
+
     private void Awake() //awake is called whenever the script is loaded
     {
         rb2d = GetComponent<Rigidbody2D>(); //use GetComponent to acces rigidbody2D
@@ -45,14 +48,24 @@ public class PlayerMovement : MonoBehaviour
             baseSpeed += dashBonus;//Has to be arduino dash sensor input
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            DecreaseShield();
+            decreasingShield = true;
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            IncreaseShield();
+            decreasingShield = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            increasingShield = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            increasingShield = false;
         }
     }
 
@@ -70,6 +83,16 @@ public class PlayerMovement : MonoBehaviour
                 dashing = false;
                 baseSpeed -= dashBonus;
             }
+        }
+
+        if (decreasingShield)
+        {
+            DecreaseShield();
+        }
+
+        if (increasingShield)
+        {
+            IncreaseShield();
         }
     }
 
