@@ -736,7 +736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709135503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.19, y: -7.4, z: 0}
+  m_LocalPosition: {x: -30.1, y: -7.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 743551336}
@@ -757,7 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 5
-  dashBonus: 5
+  dashBonus: 10
   maxSpeed: 25
   speedIncrease: 0.001
   shield: {fileID: 891420893}
@@ -1447,10 +1447,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7311819723539626254, guid: d7351f1dce6268b4ebd20c83251161da, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 16.83
-      objectReference: {fileID: 0}
     - target: {fileID: 7311819725310705644, guid: d7351f1dce6268b4ebd20c83251161da, type: 3}
       propertyPath: m_RootOrder
       value: 3
