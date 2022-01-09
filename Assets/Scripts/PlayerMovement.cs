@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed;
-    [SerializeField] private float dashBonus;
+    public float baseSpeed;
+    public float dashBonus;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float speedIncrease;
     [SerializeField] private SpriteRenderer shield;
@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private float dashTime = 0.0f;
     private float maxDashTime = 0.5f;
 
-    private bool dashing = false;
+    private float dashCooldownTime = 0.0f;
+    private float maxDashCooldownTime = 1.0f;
+
+    public bool dashing { get; private set; } = false;
 
     private bool decreasingShield = false;
     private bool increasingShield = false;
@@ -42,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             rb2d.AddForce(new Vector2(rb2d.velocity.x, 800/*has to be arduino jump sensor input*/));
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dashing)//Has to be arduino dash sensor input
+        if (Input.GetKeyDown(KeyCode.Space) && !dashing && dashCooldownTime <= 0)//Has to be arduino dash sensor input
         {
             dashing = true;
             baseSpeed += dashBonus;//Has to be arduino dash sensor input
@@ -79,11 +82,14 @@ public class PlayerMovement : MonoBehaviour
 
             if (dashTime > maxDashTime)
             {
+                dashCooldownTime = maxDashCooldownTime;
                 dashTime = 0;
                 dashing = false;
                 baseSpeed -= dashBonus;
             }
         }
+
+        dashCooldownTime -= Time.fixedDeltaTime;
 
         if (decreasingShield)
         {

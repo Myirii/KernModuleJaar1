@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 709135504}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 5
   dashBonus: 10
-  maxSpeed: 25
+  maxSpeed: 50
   speedIncrease: 0.001
   shield: {fileID: 891420893}
 --- !u!1 &743551335
