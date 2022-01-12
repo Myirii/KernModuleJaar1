@@ -127,4 +127,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisEnemy: 1
+  prefabBullet: {fileID: 8412616021144530207, guid: 3e8edc4c61b15eb4ab65a17c460b45ca, type: 3}
   firePoint: {fileID: 6900902672991284757}
