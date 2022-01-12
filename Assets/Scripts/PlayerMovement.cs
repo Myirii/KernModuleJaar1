@@ -13,13 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2d;
     private BoxCollider2D boxColl;
 
-    private int shieldStrength = 0;
+    [HideInInspector] public int shieldStrength { get; private set; } = 0;
 
     private float dashTime = 0.0f;
     private float maxDashTime = 0.5f;
 
     private float dashCooldownTime = 0.0f;
-    private float maxDashCooldownTime = 1.0f;
+    private float maxDashCooldownTime = 0.75f;
 
     public bool dashing { get; private set; } = false;
 

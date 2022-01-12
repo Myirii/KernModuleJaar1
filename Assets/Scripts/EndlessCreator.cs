@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EndlessCreator : MonoBehaviour
 {
-    public List<GameObject> prefabCityBlocks = new List<GameObject>();
+    [SerializeField] private List<GameObject> prefabCityBlocks = new List<GameObject>();
 
     private List<GameObject> existingCityBlocks = new List<GameObject>();
 
