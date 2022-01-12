@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int bulletStrength;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D _coll)
     {
-        
+        if (_coll.gameObject.tag == "Player")
+        {
+            if (bulletStrength > _coll.gameObject.GetComponent<PlayerMovement>().shieldStrength)
+            {
+                //jurpaca trample
+            }
+            else
+            {
+                _coll.gameObject.GetComponent<PlayerMovement>().CreateShieldHitstun(bulletStrength);
+            }
+        }
     }
 }

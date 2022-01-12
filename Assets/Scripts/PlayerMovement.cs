@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private float dashCooldownTime = 0.0f;
     private float maxDashCooldownTime = 0.75f;
 
+    private float shieldHitstunDuration = 0.0f;
+
     public bool dashing { get; private set; } = false;
 
     private bool decreasingShield = false;
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         //Right
         Debug.DrawLine(new Vector2(transform.position.x + (boxColl.size.x / 2), transform.position.y - (boxColl.size.y / 2) - 0.01f), new Vector2(transform.position.x + (boxColl.size.x / 2), transform.position.y - (boxColl.size.y / 2) - 0.21f), Color.blue);
 
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && IsGrounded() && !dashing)
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && IsGrounded() && !dashing && shieldHitstunDuration <= 0)
         {
             rb2d.AddForce(new Vector2(rb2d.velocity.x, 800/*has to be arduino jump sensor input*/));
         }
@@ -90,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         dashCooldownTime -= Time.fixedDeltaTime;
+        shieldHitstunDuration -= Time.fixedDeltaTime;
 
         if (decreasingShield)
         {
@@ -125,6 +128,11 @@ public class PlayerMovement : MonoBehaviour
     {
         shieldStrength = Mathf.Min(Mathf.Max(shieldStrength + 4, 0), 200);
         shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
+    }
+
+    public void CreateShieldHitstun(int _bulletStrength)
+    {
+
     }
 
     //Old code for dashing
