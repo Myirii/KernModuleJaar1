@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -24,6 +21,7 @@ public class Coin : MonoBehaviour
 			GetComponent<BoxCollider2D>().enabled = false;
 			//turn off spriterenderer so the coin seems gone
 			GetComponent<SpriteRenderer>().enabled = false;
+
 			//Add score to board
 			//todo?
 		}

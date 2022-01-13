@@ -135,46 +135,18 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    //Old code for dashing
-    //private IEnumerator Dash()
-    //{
-    //    dashing = true;
-    //    float dashTime = Time.time + 0.8f;
-    //    Vector3 startPosition = transform.position;
-    //    Vector3 lookPosition = lookPoint.localPosition;
-    //    Vector3 dashEndPosition = transform.position + new Vector3(5/*calculation of dash sensor input*/, 0, 0);
-    //    Vector3 lookPointPosition = lookPoint.localPosition - new Vector3(5/*calculation of dash sensor input*/, 0, 0);
-    //    yield return new WaitForSeconds(0.02f);
+    public void SetDashBonus(int _dashBonus)
+    {
 
-    //    while (Time.time <= dashTime)
-    //    {
-    //        transform.position = Vector2.Lerp(transform.position, dashEndPosition, 0.4f / Vector2.Distance(transform.position, dashEndPosition));
-    //        lookPoint.localPosition = Vector2.Lerp(lookPoint.localPosition, lookPointPosition,
-    //                                  0.4f / Vector2.Distance(lookPoint.localPosition, lookPointPosition));
+    }
 
-    //        if (Vector2.Distance(lookPoint.localPosition, lookPointPosition) < 0.1f)
-    //        {
-    //            dashTime -= 0.5f;
-    //        }
+    public void SetJumpStrength(int _jumpStrength)
+    {
 
-    //        yield return new WaitForSeconds(0.02f);
-    //    }
+    }
 
-    //    float returnTime = Time.time + 0.8f;
+    public void SetShieldStrength(int _shieldStrength)
+    {
 
-    //    while (Time.time <= returnTime)
-    //    {
-    //        transform.position = Vector2.Lerp(transform.position, startPosition, 0.4f / Vector2.Distance(transform.position, startPosition));
-    //        lookPoint.localPosition = Vector2.Lerp(lookPoint.localPosition, lookPosition, 0.4f / Vector2.Distance(lookPoint.localPosition, lookPosition));
-
-    //        if (Vector2.Distance(lookPoint.localPosition, lookPosition) < 0.1f)
-    //        {
-    //            returnTime -= 0.5f;
-    //        }
-
-    //        yield return new WaitForSeconds(0.02f);
-    //    }
-
-    //    dashing = false;
-    //}
+    }
 }

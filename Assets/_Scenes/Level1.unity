@@ -1483,10 +1483,18 @@ PrefabInstance:
       propertyPath: prefabBullet
       value: 
       objectReference: {fileID: 8412616021144530207, guid: 3e8edc4c61b15eb4ab65a17c460b45ca, type: 3}
+    - target: {fileID: 7311819724600164604, guid: d7351f1dce6268b4ebd20c83251161da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.85
+      objectReference: {fileID: 0}
     - target: {fileID: 7311819724600164606, guid: d7351f1dce6268b4ebd20c83251161da, type: 3}
       propertyPath: prefabBullet
       value: 
       objectReference: {fileID: 5613526530224653661, guid: 0e4673e4e468785468acc7a829548038, type: 3}
+    - target: {fileID: 7311819725039463685, guid: d7351f1dce6268b4ebd20c83251161da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.47
+      objectReference: {fileID: 0}
     - target: {fileID: 7311819725039463687, guid: d7351f1dce6268b4ebd20c83251161da, type: 3}
       propertyPath: prefabBullet
       value: 

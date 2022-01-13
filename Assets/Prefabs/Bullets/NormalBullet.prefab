@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletStrength: 120
+  bulletSpeed: 0.2
 --- !u!212 &7829542807872936325
 SpriteRenderer:
   m_ObjectHideFlags: 0

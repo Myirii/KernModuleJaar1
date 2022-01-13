@@ -7,11 +7,12 @@ using System.IO.Ports;
 public class ArduinoConnect : MonoBehaviour
 {
     private SerialPort sp;
+    private PlayerMovement pm;
 
-    // Start is called before the first frame update
     private void Start()
     {
         StartCoroutine(Search());
+        pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void LateUpdate()
@@ -41,16 +42,16 @@ public class ArduinoConnect : MonoBehaviour
 
                     if (serialRead)
                     {
-                        switch (serialCommand)//run the command sent from Unity
+                        switch (serialCommand)//run the command sent from Arduino
                         {
                             case 1://dash sensor
-                                Debug.Log("dash" + serialParameter);
+                                pm.SetDashBonus(serialParameter);
                                 break;
                             case 2://jump sensor
-                                Debug.Log("jump" + serialParameter);
+                                pm.SetJumpStrength(serialParameter);
                                 break;
                             case 3://shield sensor
-                                Debug.Log("shield" + serialParameter);
+                                pm.SetShieldStrength(serialParameter);
                                 break;
                         }
                     }
