@@ -55,9 +55,7 @@ public class ArduinoConnect : MonoBehaviour
                                 break;
                         }
                     }
-
                 }
-
             }
         }
     }

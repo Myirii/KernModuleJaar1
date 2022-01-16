@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     private bool decreasingShield = false;
     private bool increasingShield = false;
 
+    private float previousDashDistance = 29.0f;
+    private int jumpForce = 500;
+
     private void Awake() //awake is called whenever the script is loaded
     {
         rb2d = GetComponent<Rigidbody2D>(); //use GetComponent to acces rigidbody2D
@@ -44,7 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && IsGrounded() && !dashing && shieldHitstunDuration <= 0)
         {
-            rb2d.AddForce(new Vector2(rb2d.velocity.x, 800/*has to be arduino jump sensor input*/));
+            rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce/*has to be arduino jump sensor input*/));
+            jumpForce = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !dashing && dashCooldownTime <= 0)//Has to be arduino dash sensor input
@@ -53,25 +57,25 @@ public class PlayerMovement : MonoBehaviour
             baseSpeed += dashBonus;//Has to be arduino dash sensor input
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            decreasingShield = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    decreasingShield = true;
+        //}
 
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            decreasingShield = false;
-        }
+        //if (Input.GetKeyUp(KeyCode.Q))
+        //{
+        //    decreasingShield = false;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            increasingShield = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    increasingShield = true;
+        //}
 
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            increasingShield = false;
-        }
+        //if (Input.GetKeyUp(KeyCode.E))
+        //{
+        //    increasingShield = false;
+        //}
     }
 
     private void FixedUpdate()
@@ -132,21 +136,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void CreateShieldHitstun(int _bulletStrength)
     {
-
+        int leftoverShieldToSeconds = 100;//Voor Kyra om te tweaken
+        shieldHitstunDuration = (shieldStrength - _bulletStrength) / leftoverShieldToSeconds;
     }
 
     public void SetDashBonus(int _dashBonus)
     {
+        if (_dashBonus < previousDashDistance)
+        {
+            dashBonus = Mathf.Ceil(_dashBonus / 3);
+        }
 
+        previousDashDistance = _dashBonus;
     }
 
     public void SetJumpStrength(int _jumpStrength)
     {
-
+        int jumpBoost = 30;//Voor Kyra om te tweaken
+        jumpForce = _jumpStrength * jumpBoost;
     }
 
     public void SetShieldStrength(int _shieldStrength)
     {
-
+        shieldStrength = Mathf.RoundToInt(_shieldStrength * 6.666666f);
+        shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
     }
 }
