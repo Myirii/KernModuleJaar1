@@ -62,7 +62,6 @@ public class ArduinoConnect : MonoBehaviour
 
     private IEnumerator Search()
     {
-        yield return new WaitForSeconds(1);
         while (sp == null)
         {
             foreach (string str in SerialPort.GetPortNames())
@@ -72,7 +71,7 @@ public class ArduinoConnect : MonoBehaviour
                 {
                     sp = new SerialPort("COM4", 9600);
                     sp.Open();
-                    sp.ReadTimeout = 1;
+                    sp.ReadTimeout = 5;
                     Debug.Log("ARDUINO FOUND");
                 }
             }

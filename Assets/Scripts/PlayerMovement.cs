@@ -25,10 +25,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool dashing { get; private set; } = false;
 
-    private bool decreasingShield = false;
-    private bool increasingShield = false;
+    private float previousDashDistance = 0.0f;
+    private float highestDashPower = 0.0f;
 
-    private float previousDashDistance = 29.0f;
     private int jumpForce = 500;
 
     private void Awake() //awake is called whenever the script is loaded
@@ -54,28 +53,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !dashing && dashCooldownTime <= 0)//Has to be arduino dash sensor input
         {
             dashing = true;
+            dashBonus = Mathf.Ceil(highestDashPower / 3);
             baseSpeed += dashBonus;//Has to be arduino dash sensor input
+            highestDashPower = 0;
         }
-
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    decreasingShield = true;
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.Q))
-        //{
-        //    decreasingShield = false;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    increasingShield = true;
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.E))
-        //{
-        //    increasingShield = false;
-        //}
     }
 
     private void FixedUpdate()
@@ -92,21 +73,12 @@ public class PlayerMovement : MonoBehaviour
                 dashTime = 0;
                 dashing = false;
                 baseSpeed -= dashBonus;
+                dashBonus = 1;
             }
         }
 
         dashCooldownTime -= Time.fixedDeltaTime;
         shieldHitstunDuration -= Time.fixedDeltaTime;
-
-        if (decreasingShield)
-        {
-            DecreaseShield();
-        }
-
-        if (increasingShield)
-        {
-            IncreaseShield();
-        }
     }
 
     private bool IsGrounded()
@@ -122,18 +94,6 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private void DecreaseShield()
-    {
-        shieldStrength = Mathf.Min(Mathf.Max(shieldStrength - 4, 0), 200);
-        shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
-    }
-
-    private void IncreaseShield()
-    {
-        shieldStrength = Mathf.Min(Mathf.Max(shieldStrength + 4, 0), 200);
-        shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
-    }
-
     public void CreateShieldHitstun(int _bulletStrength)
     {
         int leftoverShieldToSeconds = 100;//Voor Kyra om te tweaken
@@ -144,7 +104,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_dashBonus < previousDashDistance)
         {
-            dashBonus = Mathf.Ceil(_dashBonus / 3);
+            if(previousDashDistance - _dashBonus > highestDashPower)
+            {
+                highestDashPower = previousDashDistance - _dashBonus;
+            }
         }
 
         previousDashDistance = _dashBonus;
@@ -158,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetShieldStrength(int _shieldStrength)
     {
-        shieldStrength = Mathf.RoundToInt(_shieldStrength * 6.666666f);
+        shieldStrength = Mathf.Abs(Mathf.RoundToInt(_shieldStrength * 6.666666f) - 200); //
         shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
     }
 }

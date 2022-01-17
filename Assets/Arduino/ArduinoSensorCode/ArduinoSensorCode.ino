@@ -1,6 +1,6 @@
 const int trigPin = 4;
 const int echoPin = 2;
-const int distance_threshold = 30; //cm
+const int distance_threshold = 60; //cm
 
 const int trigPin2 = 8;
 const int echoPin2 = 7;
