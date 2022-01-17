@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         //Right
         Debug.DrawLine(new Vector2(transform.position.x + (boxColl.size.x / 2), transform.position.y - (boxColl.size.y / 2) - 0.01f), new Vector2(transform.position.x + (boxColl.size.x / 2), transform.position.y - (boxColl.size.y / 2) - 0.21f), Color.blue);
 
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && IsGrounded() && !dashing && shieldHitstunDuration <= 0)
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && IsGrounded() && shieldHitstunDuration <= 0)
         {
             rb2d.AddForce(new Vector2(rb2d.velocity.x, jumpForce/*has to be arduino jump sensor input*/));
             jumpForce = 0;
