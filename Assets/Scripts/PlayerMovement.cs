@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             jumpForce = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dashing && dashCooldownTime <= 0)//Has to be arduino dash sensor input
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !dashing && dashCooldownTime <= 0)//Has to be arduino dash sensor input
         {
             dashing = true;
             dashBonus = Mathf.Ceil(highestDashPower / 3);
@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetJumpStrength(int _jumpStrength)
     {
-        int jumpBoost = 30;//Voor Kyra om te tweaken
+        int jumpBoost = 43;
         jumpForce = _jumpStrength * jumpBoost;
     }
 
