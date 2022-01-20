@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
             if(previousDashDistance - _dashBonus > highestDashPower)
             {
                 highestDashPower = previousDashDistance - _dashBonus;
+                Debug.Log(highestDashPower + " curr dash strength");
             }
         }
 

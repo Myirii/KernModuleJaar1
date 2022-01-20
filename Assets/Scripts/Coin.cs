@@ -15,6 +15,7 @@ public class Coin : MonoBehaviour
 	{
 		if (_coll.gameObject.tag == "Player")
 		{
+			ScoreTextScript.coinAmount += 1;
 			//play collection animation
 			ps.Play();
 			//turn off collider and add coin
