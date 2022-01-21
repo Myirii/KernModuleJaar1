@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class ScoreTextScript : MonoBehaviour
 {
-    Text text;
+    private Text text;
     public static int coinAmount;
 
-    void Start()
+    private void Start()
     {
-        text = GetComponent<Text>();   
+        text = GameObject.Find("Score").GetComponent<Text>();
     }
 
-    void Update()
+    private void Update()
     {
-        text.text = coinAmount.ToString();  
+        text.text = "Score: " + coinAmount.ToString();
     }
 }
