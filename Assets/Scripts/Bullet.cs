@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class Bullet : MonoBehaviour
         {
             if (bulletStrength > _coll.gameObject.GetComponent<PlayerMovement>().shieldStrength)
             {
-                //jurpaca trample
+                SceneManager.LoadScene(0);
+                ScoreTextScript.coinAmount = 0;
             }
             else
             {
