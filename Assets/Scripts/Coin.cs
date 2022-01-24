@@ -22,9 +22,6 @@ public class Coin : MonoBehaviour
 			GetComponent<BoxCollider2D>().enabled = false;
 			//turn off spriterenderer so the coin seems gone
 			GetComponent<SpriteRenderer>().enabled = false;
-
-			//Add score to board
-			//todo?
 		}
 	}
 }

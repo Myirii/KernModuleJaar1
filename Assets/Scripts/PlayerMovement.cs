@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CreateShieldHitstun(int _bulletStrength)
     {
-        int leftoverShieldToSeconds = 100;//Voor Kyra om te tweaken
+        int leftoverShieldToSeconds = 100;
         shieldHitstunDuration = (shieldStrength - _bulletStrength) / leftoverShieldToSeconds;
     }
 
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetShieldStrength(int _shieldStrength)
     {
-        shieldStrength = Mathf.Abs(Mathf.RoundToInt(_shieldStrength * 6.666666f) - 200); //
+        shieldStrength = Mathf.Abs(Mathf.RoundToInt(_shieldStrength * 6.666666f) - 200); 
         shield.color = new Color(shield.color.r, shield.color.g, shield.color.b, shieldStrength / 255f);
     }
 }
