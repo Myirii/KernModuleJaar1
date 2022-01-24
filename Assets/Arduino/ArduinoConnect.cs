@@ -67,9 +67,9 @@ public class ArduinoConnect : MonoBehaviour
             foreach (string str in SerialPort.GetPortNames())
             {
                 Debug.Log(string.Format("Existing COM port: {0}", str));
-                if (str == "COM3")
+                if (str == "COM4")
                 {
-                    sp = new SerialPort("COM3", 9600);
+                    sp = new SerialPort("COM4", 9600);
                     sp.Open();
                     sp.ReadTimeout = 5;
                     Debug.Log("ARDUINO FOUND");
